@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Countdown Timer</title>
+  <style>
+    #timer {
+      font-size: 48px;
+      font-weight: bold;
+      
+    }
+  body{
+    background-color: blue;
+  }
+  </style>
+</head>
+<body>
+  <h1>Countdown Timer</h1>
+  <div id="timer">10</div>
+
+  <script>
+    var count = 10;
+    var timerDisplay = document.getElementById("timer");
+    
+    function startCountdown() {
+      var countdown = setInterval(function() {
+        count--;
+        timerDisplay.innerText = count;
+
+        if (count <= 0) {
+          clearInterval(countdown);
+          timerDisplay.innerText = "Time's up!";
+          timerDisplay.style.color = "red";
+        }
+      }, 1000);
+    }
+
+    startCountdown();
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  
+  <title>Image Slider with Buttons</title>
+  <style>
+    .slider-container {
+      width: 700px;
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+    }
+    .slider-images {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slider-image {
+      width: 700px;
+      height: 400px;
+      object-fit: cover;
+    }
+    .slider-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .slider-button:first-child {
+      left: 10px;
+    }
+    .slider-button:last-child {
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Image Slider with Buttons</h1>
+  <div class="slider-container">
+    <div class="slider-images">
+      <img class="slider-image" src="/storage/emulated/0/Pictures/facebook/1677090272009.jpg"alt="Image 1">
+      <img class="slider-image" src=" /storage/emulated/0/Pictures/facebook/1679163134803.jpg"alt="Image 2">
+      <img class="slider-image" src="/storage/emulated/0/Pictures/facebook/1697414053381.jpg"alt="Image 3">
+        <img class="slider-image" src="/storage/emulated/0/Pictures/facebook/1697006459287.jpg"alt="Image 4">
+      <img class="slider-image" src="/storage/emulated/0/Pictures/facebook/1697413917378.jpg"alt="Image 5">
+        
+      
+    </div>
+    <button class="slider-button" onclick="moveSlider(-1)">&#10094;</button>
+    <button class="slider-button" onclick="moveSlider(1)">&#10095;</button>
+  </div>
+
+  <script>
+    var slideIndex = 0;
+    var sliderImages = document.getElementsByClassName("slider-image");
+
+    function moveSlider(n) {
+      slideIndex += n;
+
+      if (slideIndex >= sliderImages.length) {
+        slideIndex = 0;
+      } else if (slideIndex < 0) {
+        slideIndex = sliderImages.length - 1;
+      }
+
+      var pixelOffset = -(slideIndex * sliderImages[0].offsetWidth);
+      document.querySelector(".slider-images").style.transform = "translateX(" + pixelOffset + "px)";
+    }
+  </script>
+</body>
+</html>

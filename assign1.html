@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+ 
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li.completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <h1>Task Manager</h1>
+  <form id="taskForm" onsubmit="addTask(); return false;">
+    <input type="text" id="taskInput" placeholder="Add a task">
+    <button type="submit">Add</button>
+  </form>
+  <ul id="taskList"></ul>
+
+  <script>
+    function addTask() {
+      const taskInput = document.getElementById("taskInput");
+      const taskList = document.getElementById("taskList");
+      
+      // Create a new list item
+      const listItem = document.createElement("li");
+
+      // Create a checkbox for marking completion
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.onclick = function() {
+        listItem.classList.toggle("completed");
+      };
+
+      // Create a span element to display the task text
+      const taskText = document.createElement("span");
+      taskText.innerText = taskInput.value;
+
+      // Create a button for deleting the task
+      const deleteButton = document.createElement("button");
+      deleteButton.innerText = "Delete";
+      deleteButton.onclick = function() {
+        listItem.remove();
+      };
+
+      // Append the checkbox, task text, and delete button to the list item
+      listItem.appendChild(checkbox);
+      listItem.appendChild(taskText);
+      listItem.appendChild(deleteButton);
+
+      // Append the new list item to the task list
+      taskList.appendChild(listItem);
+
+      // Clear the input value after adding the task
+      taskInput.value = "";
+    }
+  </script>
+
+</body>
+</html>
+
+
