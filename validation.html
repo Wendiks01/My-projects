@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+       function validateForm(){
+        var name = document.forms["myForm"]["username"].value;
+        var password = document.forms["myForm"]["password"].value;
+        var confirmPassword = document.forms["myForm"]["confirmPassword"].value;
+        var email = document.forms["myForm"]["email"].value;
+
+        if(name ===""){
+            alert("Please enter your name.");
+            return false;
+        }
+
+        if (password.length < 6){
+            alert("Password must not be lesss than 6 characters long.");
+            return false;
+        }
+
+        if (password !== confirmPassword){
+            alert("Password do not match.");
+            return false;
+
+        }
+        if(!validateEmail(email)){
+            alert("Please your email address is invalid");
+            return false;
+        }
+        //Form is valid, do further processing
+
+        return true;
+       } 
+
+       function validateEmail(email){
+        var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+       }
+    </script>
+</head>
+<body>
+    <h2>Form Validation</h2>
+
+    <form name="myForm" onsubmit="return validateForm()" method="POST">
+        <label for="username">Name:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
